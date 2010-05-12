@@ -1,22 +1,21 @@
+use inc::Module::Install;
 
-use strict;
-use warnings;
+name     'Net-Dropbox';
+all_from 'lib/Net/Dropbox.pm';
+author   q{Lenz Gschwendtner <norbu09@cpan.org>};
+license  'perl';
 
-use ExtUtils::MakeMaker;
+build_requires 'Test::More';
 
-WriteMakefile(
-  DISTNAME  => 'Net-Dropbox',
-  NAME      => 'Net::Dropbox',
-  AUTHOR    => 'sungo\ \<sungo\@sungo\.us\>',
-  ABSTRACT  => 'Communicate\ with\ local\ Dropbox\ daemon',
-  VERSION   => '1.091510',
-  EXE_FILES => [ qw() ],
-  (eval { ExtUtils::MakeMaker->VERSION(6.21) } ? (LICENSE => 'bsd') : ()),
-  PREREQ_PM    => {
-    "Test::More" => '0',
-    "MooseX::StrictConstructor" => '0',
-    "File::HomeDir" => '0',
-    "Encode" => '0',
-    "Moose" => '0',
-  },
-);
+requires 'JSON';
+requires 'Mouse';
+requires 'Net::OAuth';
+requires 'common::sense';
+requires 'LWP::UserAgent';
+requires 'HTTP::Request::Common';
+requires 'Data::Random';
+
+auto_install;
+
+WriteAll;
+
